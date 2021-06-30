@@ -1,0 +1,70 @@
+{
+  "lists": [
+    {
+      "id": 3,
+      "name": "Later",
+      "imgUrl": "https://fakeimg.pl/250x100/",
+      "description": "description-3",
+      "priority": 3,
+      "isCompleted": false,
+      "iconUrl": "https://s3-us-west-1.amazonaws.com/angular-university/course-images/angular-pwa-course.png",
+      "listCount": 10
+    },
+    {
+      "name": "Asd",
+      "description": "Are you sex?",
+      "dueDate": "2021-06-30T15:26:07.333Z",
+      "priority": 3,
+      "isCompleted": 2,
+      "imgUrl": "",
+      "id": 4
+    },
+    {
+      "name": "asl?",
+      "description": "golem",
+      "dueDate": "2021-07-12T21:00:00.000Z",
+      "priority": 1,
+      "isCompleted": 1,
+      "imgUrl": "",
+      "id": 5
+    },
+    {
+      "name": "salem",
+      "description": "desc",
+      "dueDate": "2021-06-30T15:26:33.506Z",
+      "priority": 2,
+      "isCompleted": 3,
+      "imgUrl": "",
+      "id": 6
+    }
+  ],
+  "tasks": [],
+  "priorities": [
+    {
+      "id": 1,
+      "value": 1
+    },
+    {
+      "id": 2,
+      "value": 2
+    },
+    {
+      "id": 3,
+      "value": 3
+    }
+  ],
+  "status": [
+    {
+      "id": 1,
+      "value": "Not Started"
+    },
+    {
+      "id": 2,
+      "value": "In Progress"
+    },
+    {
+      "id": 3,
+      "value": "Complete"
+    }
+  ]
+}

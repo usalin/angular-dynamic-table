@@ -7,15 +7,30 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
-import { FormsModule } from '@angular/forms';
+import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatListModule} from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { HttpClientModule } from '@angular/common/http';
+import {MatRadioModule} from '@angular/material/radio';
+import { ListEditComponent } from './list-edit/list-edit.component';
+import { MatSelectModule } from '@angular/material/select';
+import { DeleteConfirmationComponent } from './delete-confirmation/delete-confirmation.component';
+
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ListEditComponent,
+    DeleteConfirmationComponent
   ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -23,7 +38,17 @@ import { FormsModule } from '@angular/forms';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatListModule,
+    MatIconModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    HttpClientModule,
+    MatRadioModule,
+    MatOptionModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

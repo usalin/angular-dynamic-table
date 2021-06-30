@@ -1,17 +1,21 @@
 import { Component } from '@angular/core';
-
-const USER_INFO = [
-  {"name": "John Smith", "occupation": "Advisor", "dateOfBirth": "1984-05-05", "age": 36},
-  {"name": "Muhi Masri", "occupation": "Developer", "dateOfBirth": "1992-02-02", "age": 28},
-  {"name": "Peter Adams", "occupation": "HR", "dateOfBirth": "2000-01-01", "age": 20},
-  {"name": "Lora Bay", "occupation": "Marketing", "dateOfBirth": "1977-03-03", "age": 43},
-];
+import { MatDialog } from '@angular/material/dialog';
+import { ParamMap } from '@angular/router';
+import { Observable, of } from 'rxjs';
+import { concatMap, filter, share, shareReplay, switchMap, tap } from 'rxjs/operators';
+import { DeleteConfirmationComponent } from './delete-confirmation/delete-confirmation.component';
+import { ListEditComponent } from './list-edit/list-edit.component';
+import { ListService } from './list.service';
+import { List } from './models/list';
 
 const USER_SCHEMA = {
+  "id": "number",
   "name": "text",
-  "occupation": "text",
-  "dateOfBirth": "date",
-  "age": "number",
+  "description": "text",
+  "imgUrl": "text",
+  "dueDate": "date",
+  "priority": "number",
+  "isCompleted": "boolean",
   "edit": "edit",
   "delete": "delete",
   "create": "create"
@@ -23,7 +27,100 @@ const USER_SCHEMA = {
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  displayedColumns: string[] = ['name', 'occupation', 'dateOfBirth', 'age', 'edit', 'delete', 'create'];
-  dataSource = USER_INFO;
+  displayedColumns: string[] = ["name", "description",  "imgUrl",  "dueDate", "priority", "isCompleted",  "edit", "delete", "create"];
+  dataSource$ = this.listService.getLists();
   dataSchema = USER_SCHEMA;
+  list: List;
+  obs: Observable<List[]>;
+
+  constructor(private dialog: MatDialog,
+              private listService: ListService) {
+  }
+
+  openDialog(list: List, action: string): void {
+    
+    const dialogRef = this.dialog.open(ListEditComponent, {
+      width: "680px",
+      data: { list: list, id: "parent", operation: action },
+      id: "parent",
+      disableClose: true //optional
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      this.dataSource$ = this.listService.getLists();
+
+      
+      console.log("The dialog was closed with data: " + result);
+      this.list = result;
+      this.dialog.closeAll();
+    });
+  } 
+  openDeleteDialog(element: List) : void {
+    const passedElement = element;
+    const dialogRef = this.dialog.open(DeleteConfirmationComponent, {
+      width: "680px",
+      data: passedElement,
+      id: "parent",
+      disableClose: true
+    });
+    
+    // this.dataSource$ = dialogRef.afterClosed().pipe(
+    //   switchMap(result => {
+    //     if(result) {
+    //       return this.listService.deleteItem(element);
+    //     }
+    //     else{
+    //       return of("false");
+    //     }
+    //     }
+    //   ),
+    //   tap((data)=> {console.log(data);
+    //   }),
+    //   switchMap( (data) => this.listService.getLists()),
+    //   tap(()=> this.dialog.closeAll())
+    // )
+
+dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        this.listService.deleteItem(element).subscribe(() => {   
+          
+          this.dataSource$ = this.listService.getLists();     
+          });
+          this.dialog.closeAll();
+    
+      }});
+
+
+
+
+
+
+  }
 }
+
+    // this.dataSource$ = dialogRef.afterClosed().pipe(
+    //   switchMap(result => {
+    //     if(result) {
+    //       return this.listService.deleteItem(element);
+    //     }
+    //     else{
+    //       return of("false");
+    //     }
+    //     }
+    //   ),
+    //   tap((data)=> {console.log(data);
+    //   }),
+    //   switchMap( (data) => this.listService.getLists()),
+    //   tap(()=> this.dialog.closeAll())
+    // )}
+
+    // dialogRef.afterClosed().subscribe(result => {
+    //   if(result) {
+    //     this.listService.deleteItem(element).subscribe(() => {   
+          
+    //       this.dataSource$ = this.listService.getLists();     
+    //       });
+    //       this.dialog.closeAll();
+
+    //   }
+    // });

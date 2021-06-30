@@ -1,0 +1,54 @@
+<form [formGroup]="listForm" (ngSubmit)="onSubmit()">
+   <h1 mat-dialog-title cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>{{passedData?.list?.name}}</h1>
+   
+   <div mat-dialog-content >
+   <mat-label><strong>List Name</strong></mat-label>
+   <mat-form-field>
+       <div class="name" [class.error]="listName.errors && listName.touched">
+       <input  matInput formControlName="listName">
+     </div>
+     </mat-form-field>
+     <mat-label><strong>Description</strong></mat-label>
+     <mat-form-field>
+       <input matInput formControlName="description">
+       <div *ngIf="description.touched && description.invalid" class="error">
+         <ul>
+           <li *ngIf="description.errors.required">Description is required</li>
+           <li *ngIf="description.errors.invalidDescription">Description is invalid</li>
+         </ul>
+   
+       </div>
+     </mat-form-field>
+   
+     <mat-label><strong>Due Date</strong></mat-label>
+     <mat-form-field appearance="fill">
+   
+       <input matInput
+   
+       [matDatepicker]="picker2" formControlName="dueDate">
+       <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+       <mat-datepicker [startAt]="date" #picker2></mat-datepicker>
+     </mat-form-field>
+   
+     <mat-label><strong>Priority</strong></mat-label>
+  <mat-form-field appearance="fill">
+    <mat-select formControlName="priority">
+      <mat-option [ngClass]="getPriorityColor(priority.value)" *ngFor="let priority of priorities" [value]="priority.value">
+        {{priority.value}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-label><strong>Completion</strong></mat-label>
+  <br>
+    <mat-radio-group formControlName="isCompleted" #radioGroup="matRadioGroup"
+  aria-label="Select completion status">
+  <mat-radio-button *ngFor="let status of statuses" [value]="status.id">
+    {{status.value}}</mat-radio-button>
+</mat-radio-group>
+
+</div>
+     
+   <button type="submit" class="submitButton" mat-raised-button color="primary">Submit Form!</button>
+   </form>
+   

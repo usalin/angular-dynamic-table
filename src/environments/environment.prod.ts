@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  fakeApiUrl: "http://localhost:3000/"
+
 };

@@ -2,31 +2,21 @@
   "lists": [
     {
       "id": 3,
-      "name": "Later",
+      "name": "Later Today?",
       "imgUrl": "https://fakeimg.pl/250x100/",
-      "description": "description-3",
+      "description": "description-3dsdssad",
+      "dueDate": "2021-06-30T21:00:00.000Z",
       "priority": 3,
-      "isCompleted": false,
-      "iconUrl": "https://s3-us-west-1.amazonaws.com/angular-university/course-images/angular-pwa-course.png",
-      "listCount": 10
+      "isCompleted": 2
     },
     {
-      "name": "Asd",
-      "description": "Are you sex?",
-      "dueDate": "2021-06-30T15:26:07.333Z",
-      "priority": 3,
-      "isCompleted": 2,
+      "id": 5,
+      "name": "asl?dssddas",
       "imgUrl": "",
-      "id": 4
-    },
-    {
-      "name": "asl?",
-      "description": "golem",
-      "dueDate": "2021-07-12T21:00:00.000Z",
+      "description": "golemdsasdadsa",
+      "dueDate": "2021-07-20T21:00:00.000Z",
       "priority": 1,
-      "isCompleted": 1,
-      "imgUrl": "",
-      "id": 5
+      "isCompleted": 2
     },
     {
       "name": "salem",
@@ -36,6 +26,87 @@
       "isCompleted": 3,
       "imgUrl": "",
       "id": 6
+    },
+    {
+      "name": "sadsa",
+      "description": "dsadsasad",
+      "dueDate": "2021-07-01T00:50:41.542Z",
+      "priority": 2,
+      "isCompleted": 3,
+      "imgUrl": "",
+      "id": 8
+    },
+    {
+      "name": "aaaaaaa",
+      "description": "ssssssssssssss",
+      "dueDate": "2021-07-15T21:00:00.000Z",
+      "priority": 3,
+      "isCompleted": 2,
+      "imgUrl": "",
+      "id": 9
+    },
+    {
+      "name": "dssdadsa",
+      "description": "dssddsadsa",
+      "dueDate": "2021-07-01T01:02:11.118Z",
+      "priority": 3,
+      "isCompleted": 3,
+      "imgUrl": "",
+      "id": 10
+    },
+    {
+      "name": "aaaaaaaaaaaaaaaaa!!!!!!!!!!",
+      "description": "bbbbbbbbbb",
+      "dueDate": "2021-07-09T21:00:00.000Z",
+      "priority": 2,
+      "isCompleted": 2,
+      "imgUrl": "",
+      "id": 11
+    },
+    {
+      "name": "dsads",
+      "description": "dsdsasda",
+      "dueDate": "2021-07-15T21:00:00.000Z",
+      "priority": 2,
+      "isCompleted": 2,
+      "imgUrl": "",
+      "id": 12
+    },
+    {
+      "name": "dsasdaas",
+      "description": "dsadsa",
+      "dueDate": "2021-07-08T21:00:00.000Z",
+      "priority": 3,
+      "isCompleted": 2,
+      "imgUrl": "",
+      "id": 13
+    },
+    {
+      "name": "dsdsa",
+      "description": "sddsada",
+      "dueDate": "2021-07-06T21:00:00.000Z",
+      "priority": 2,
+      "isCompleted": 3,
+      "imgUrl": "",
+      "id": 14
+    },
+    {
+      "name": "dsadsa",
+      "description": "dsadas",
+      "dueDate": "2021-07-13T21:00:00.000Z",
+      "priority": 3,
+      "isCompleted": 3,
+      "imgUrl": "",
+      "id": 15
+    },
+    {
+      "id": 16,
+      "name": "Sampras",
+      "imgUrl": "",
+      "description": "Pete",
+      "dueDate": "2021-07-06T21:00:00.000Z",
+      "priority": 2,
+      "isCompleted": 1
     }
   ],
   "tasks": [],

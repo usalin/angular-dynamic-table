@@ -20,6 +20,8 @@ import {MatRadioModule} from '@angular/material/radio';
 import { ListEditComponent } from './list-edit/list-edit.component';
 import { MatSelectModule } from '@angular/material/select';
 import { DeleteConfirmationComponent } from './delete-confirmation/delete-confirmation.component';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 
@@ -48,7 +50,9 @@ import { DeleteConfirmationComponent } from './delete-confirmation/delete-confir
     HttpClientModule,
     MatRadioModule,
     MatOptionModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSortModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

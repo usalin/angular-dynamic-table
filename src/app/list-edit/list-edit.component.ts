@@ -25,7 +25,6 @@ export class ListEditComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
               public cdk: OverlayContainer,
-              private elementRef: ElementRef,
               public dialogRef: MatDialogRef<ListEditComponent>,
               @Inject(MAT_DIALOG_DATA) public passedData: PassedObject,
               private formBuilder: FormBuilder,
@@ -60,6 +59,10 @@ export class ListEditComponent implements OnInit {
      })
   }
 
+  onCancel() {
+    this.dialogRef.close();
+  }
+
   onSubmit() {
     console.log(this.listForm.value);
 
@@ -76,6 +79,8 @@ export class ListEditComponent implements OnInit {
         }
         this.listService.updateItem(updatedList).subscribe(data => {
           console.log(data);
+          this.dialogRef.close(data);
+
         });
       }
       else {
@@ -90,18 +95,10 @@ export class ListEditComponent implements OnInit {
         
         this.listService.createItem(newList).subscribe(data => {
           console.log(data);
+          this.dialogRef.close(data);
         });
       }
-
-
- 
-
-
-      // const complexObject = [this.listForm.value, this.passedData];
-      this.dialogRef.close();
     }
-
-
   }  
   getPriorities() {
     this.listService.getPriorities().subscribe(data => {

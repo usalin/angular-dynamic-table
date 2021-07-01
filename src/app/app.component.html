@@ -1,8 +1,8 @@
 <article>
   <h2>Editable Dynamic Table</h2>
-  <table mat-table [dataSource]="dataSource$ | async">
+    <table mat-table [dataSource]="dataSource" matSort>
     <ng-container [matColumnDef]="col" *ngFor="let col of displayedColumns">
-      <th mat-header-cell *matHeaderCellDef>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
         <span *ngIf="col !== 'edit' && col !== 'delete' && col !== 'create'">
           {{col}}
         </span>
@@ -28,4 +28,7 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
 </article>

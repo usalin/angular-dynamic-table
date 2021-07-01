@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ParamMap } from '@angular/router';
-import { Observable, of } from 'rxjs';
-import { concatMap, filter, share, shareReplay, switchMap, tap } from 'rxjs/operators';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { DeleteConfirmationComponent } from './delete-confirmation/delete-confirmation.component';
 import { ListEditComponent } from './list-edit/list-edit.component';
 import { ListService } from './list.service';
@@ -26,17 +26,34 @@ const USER_SCHEMA = {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   displayedColumns: string[] = ["name", "description",  "imgUrl",  "dueDate", "priority", "isCompleted",  "edit", "delete", "create"];
-  dataSource$ = this.listService.getLists();
   dataSchema = USER_SCHEMA;
   list: List;
-  obs: Observable<List[]>;
+  public dataSource = new MatTableDataSource([]);
+
+  @ViewChild(MatPaginator, {static: false}) matPaginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) matSort: MatSort;
 
   constructor(private dialog: MatDialog,
               private listService: ListService) {
   }
+  ngOnInit() {
+    this.setDataSource();
+  }
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.matPaginator;
+  }
+  setDataSource() {
+    this.listService.getLists().subscribe(
+      data => {
+        this.dataSource = new MatTableDataSource<any>(data);
+        this.dataSource.paginator = this.matPaginator;
+        this.dataSource.sort = this.matSort;
+      }
+    );
 
+  }
   openDialog(list: List, action: string): void {
     
     const dialogRef = this.dialog.open(ListEditComponent, {
@@ -47,11 +64,10 @@ export class AppComponent {
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
-      this.dataSource$ = this.listService.getLists();
-
+      if(result) {
+      this.setDataSource();
+      }
       
-      console.log("The dialog was closed with data: " + result);
-      this.list = result;
       this.dialog.closeAll();
     });
   } 
@@ -63,28 +79,12 @@ export class AppComponent {
       id: "parent",
       disableClose: true
     });
-    
-    // this.dataSource$ = dialogRef.afterClosed().pipe(
-    //   switchMap(result => {
-    //     if(result) {
-    //       return this.listService.deleteItem(element);
-    //     }
-    //     else{
-    //       return of("false");
-    //     }
-    //     }
-    //   ),
-    //   tap((data)=> {console.log(data);
-    //   }),
-    //   switchMap( (data) => this.listService.getLists()),
-    //   tap(()=> this.dialog.closeAll())
-    // )
 
-dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe(result => {
       if(result) {
-        this.listService.deleteItem(element).subscribe(() => {   
+        this.listService.deleteItem(element).subscribe((result) => {   
+            this.setDataSource();
           
-          this.dataSource$ = this.listService.getLists();     
           });
           this.dialog.closeAll();
     

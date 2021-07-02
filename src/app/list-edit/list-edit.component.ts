@@ -46,7 +46,7 @@ export class ListEditComponent implements OnInit {
      description: [this.passedData.list.description, [Validators.required]],
      dueDate: [new Date(this.passedData.list.dueDate)],
      priority: [''],
-     isCompleted : [''],
+     status : [''],
     })
   }
   createNewListForm() {
@@ -55,7 +55,7 @@ export class ListEditComponent implements OnInit {
       description: ['', [Validators.required]],
       dueDate: [new Date()],
       priority: [''],
-      isCompleted : [''],
+      status : [''],
      })
   }
 
@@ -75,7 +75,9 @@ export class ListEditComponent implements OnInit {
           description: this.listForm.get('description').value,
           dueDate: this.listForm.get('dueDate').value,
           priority: this.listForm.get('priority').value,
-          isCompleted : this.listForm.get('isCompleted').value
+          status : this.listForm.get('status').value,
+          isCompleted: false,
+
         }
         this.listService.updateItem(updatedList).subscribe(data => {
           console.log(data);
@@ -89,8 +91,9 @@ export class ListEditComponent implements OnInit {
           description: this.listForm.get('description').value,
           dueDate: this.listForm.get('dueDate').value,
           priority: this.listForm.get('priority').value,
-          isCompleted : this.listForm.get('isCompleted').value,
+          status : this.listForm.get('status').value,
           imgUrl: '',
+          isCompleted: false,
         }
         
         this.listService.createItem(newList).subscribe(data => {
@@ -127,7 +130,7 @@ export class ListEditComponent implements OnInit {
      this.selectedCompletionStatus = this.statuses[1].id;
 
      if(this.passedData.operation == 'Edit') {    
-      this.listForm.get('isCompleted').setValue(this.selectedCompletionStatus);
+      this.listForm.get('status').setValue(this.selectedCompletionStatus);
     }
      
    })

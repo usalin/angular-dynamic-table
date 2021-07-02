@@ -1,3 +1,12 @@
+<div class="search-container">
+
+<mat-form-field>
+  <mat-label>Filter data</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Search for data..">
+</mat-form-field>
+</div>
+
+
 <article>
   <h2>Editable Dynamic Table</h2>
     <table mat-table [dataSource]="dataSource" matSort>
@@ -19,7 +28,14 @@
           <div class="btn-delete" *ngIf="col === 'delete'; spanHeader">
             <button mat-raised-button (click)="openDeleteDialog(element)">Delete</button>
           </div>
-          <span #spanHeader>
+          <div class="date" *ngIf="col === 'dueDate'; spanHeader">
+            <input disabled matInput [placeholder]="element[col] | date:'dd-MM-yyyy'">
+          </div>
+          <div class="date" *ngIf="col === 'isCompleted'; spanHeader">
+           <mat-checkbox disabled [ngClass]="getCheckboxColor(element[col])" [checked]="element[col]"></mat-checkbox>
+          </div>
+
+          <span #spanHeader *ngIf="col !== 'dueDate' && col !== 'isCompleted'">
             {{element[col]}}
           </span>
         </div>

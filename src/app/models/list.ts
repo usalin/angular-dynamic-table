@@ -5,7 +5,8 @@ export interface List {
    description?: string;
    dueDate: string;
    priority: Priority;
-   isCompleted: CompletionStatus;
+   isCompleted: boolean;
+   status: CompletionStatus;
 }
 
 export interface LimitedList {

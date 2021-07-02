@@ -16,6 +16,7 @@ const USER_SCHEMA = {
   "dueDate": "date",
   "priority": "number",
   "isCompleted": "boolean",
+  "status": "status",
   "edit": "edit",
   "delete": "delete",
   "create": "create"
@@ -26,17 +27,17 @@ const USER_SCHEMA = {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
-  displayedColumns: string[] = ["name", "description",  "imgUrl",  "dueDate", "priority", "isCompleted",  "edit", "delete", "create"];
+export class AppComponent implements OnInit {
+  displayedColumns: string[] = ["name", "description", "imgUrl", "dueDate", "priority", "isCompleted", "status", "edit", "delete", "create"];
   dataSchema = USER_SCHEMA;
   list: List;
   public dataSource = new MatTableDataSource([]);
 
-  @ViewChild(MatPaginator, {static: false}) matPaginator: MatPaginator;
-  @ViewChild(MatSort, {static: true}) matSort: MatSort;
+  @ViewChild(MatPaginator, { static: false }) matPaginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) matSort: MatSort;
 
   constructor(private dialog: MatDialog,
-              private listService: ListService) {
+    private listService: ListService) {
   }
   ngOnInit() {
     this.setDataSource();
@@ -55,7 +56,6 @@ export class AppComponent implements OnInit{
 
   }
   openDialog(list: List, action: string): void {
-    
     const dialogRef = this.dialog.open(ListEditComponent, {
       width: "680px",
       data: { list: list, id: "parent", operation: action },
@@ -64,14 +64,13 @@ export class AppComponent implements OnInit{
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
-      if(result) {
-      this.setDataSource();
+      if (result) {
+        this.setDataSource();
       }
-      
       this.dialog.closeAll();
     });
-  } 
-  openDeleteDialog(element: List) : void {
+  }
+  openDeleteDialog(element: List): void {
     const passedElement = element;
     const dialogRef = this.dialog.open(DeleteConfirmationComponent, {
       width: "680px",
@@ -81,46 +80,19 @@ export class AppComponent implements OnInit{
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result) {
-        this.listService.deleteItem(element).subscribe((result) => {   
-            this.setDataSource();
-          
-          });
-          this.dialog.closeAll();
-    
-      }});
-
-
-
-
-
-
+      if (result) {
+        this.listService.deleteItem(element).subscribe((result) => {
+          this.setDataSource();
+        });
+        this.dialog.closeAll();
+      }
+    });
   }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  getCheckboxColor(isComplete){    
+    if(isComplete) return 'priorityOne';
+   }
 }
-
-    // this.dataSource$ = dialogRef.afterClosed().pipe(
-    //   switchMap(result => {
-    //     if(result) {
-    //       return this.listService.deleteItem(element);
-    //     }
-    //     else{
-    //       return of("false");
-    //     }
-    //     }
-    //   ),
-    //   tap((data)=> {console.log(data);
-    //   }),
-    //   switchMap( (data) => this.listService.getLists()),
-    //   tap(()=> this.dialog.closeAll())
-    // )}
-
-    // dialogRef.afterClosed().subscribe(result => {
-    //   if(result) {
-    //     this.listService.deleteItem(element).subscribe(() => {   
-          
-    //       this.dataSource$ = this.listService.getLists();     
-    //       });
-    //       this.dialog.closeAll();
-
-    //   }
-    // });

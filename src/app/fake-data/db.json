@@ -4,10 +4,23 @@
       "id": 3,
       "name": "Later Today?",
       "imgUrl": "https://fakeimg.pl/250x100/",
-      "description": "description-3dsdssad",
-      "dueDate": "2021-06-30T21:00:00.000Z",
-      "priority": 3,
-      "isCompleted": 2
+      "description": "descriptive text!",
+      "dueDate": "2021-07-11T21:00:00.000Z",
+      "priority": 2,
+      "status": 3,
+      "isCompleted": false,
+      "subjects":[
+        {
+           "name":"Bio",
+           "type":"Medical",
+           "grade":"A"
+        },
+        {
+          "name":"Chemics",
+          "type":"Medical",
+          "grade":"D"
+        }
+      ]
     },
     {
       "id": 5,
@@ -16,88 +29,98 @@
       "description": "golemdsasdadsa",
       "dueDate": "2021-07-20T21:00:00.000Z",
       "priority": 1,
-      "isCompleted": 2
+      "status": 2,
+      "isCompleted": true
     },
     {
       "name": "salem",
       "description": "desc",
       "dueDate": "2021-06-30T15:26:33.506Z",
       "priority": 2,
-      "isCompleted": 3,
+      "status": 3,
       "imgUrl": "",
-      "id": 6
+      "id": 6,
+      "isCompleted": true
     },
     {
       "name": "sadsa",
       "description": "dsadsasad",
       "dueDate": "2021-07-01T00:50:41.542Z",
       "priority": 2,
-      "isCompleted": 3,
+      "status": 3,
       "imgUrl": "",
-      "id": 8
+      "id": 8,
+      "isCompleted": true
     },
     {
       "name": "aaaaaaa",
       "description": "ssssssssssssss",
       "dueDate": "2021-07-15T21:00:00.000Z",
       "priority": 3,
-      "isCompleted": 2,
+      "status": 2,
       "imgUrl": "",
-      "id": 9
+      "id": 9,
+      "isCompleted": true
     },
     {
       "name": "dssdadsa",
       "description": "dssddsadsa",
       "dueDate": "2021-07-01T01:02:11.118Z",
       "priority": 3,
-      "isCompleted": 3,
+      "status": 3,
       "imgUrl": "",
-      "id": 10
+      "id": 10,
+      "isCompleted": true
     },
     {
       "name": "aaaaaaaaaaaaaaaaa!!!!!!!!!!",
       "description": "bbbbbbbbbb",
       "dueDate": "2021-07-09T21:00:00.000Z",
       "priority": 2,
-      "isCompleted": 2,
+      "status": 2,
       "imgUrl": "",
-      "id": 11
+      "id": 11,
+      "isCompleted": true
     },
     {
       "name": "dsads",
       "description": "dsdsasda",
       "dueDate": "2021-07-15T21:00:00.000Z",
       "priority": 2,
-      "isCompleted": 2,
+      "status": 2,
       "imgUrl": "",
-      "id": 12
+      "id": 12,
+      "isCompleted": true
     },
     {
       "name": "dsasdaas",
       "description": "dsadsa",
       "dueDate": "2021-07-08T21:00:00.000Z",
       "priority": 3,
-      "isCompleted": 2,
+      "status": 2,
       "imgUrl": "",
-      "id": 13
+      "id": 13,
+      "isCompleted": false
     },
     {
       "name": "dsdsa",
       "description": "sddsada",
       "dueDate": "2021-07-06T21:00:00.000Z",
       "priority": 2,
-      "isCompleted": 3,
+      "status": 3,
       "imgUrl": "",
-      "id": 14
+      "id": 14,
+      "isCompleted": false
     },
     {
       "name": "dsadsa",
       "description": "dsadas",
       "dueDate": "2021-07-13T21:00:00.000Z",
       "priority": 3,
-      "isCompleted": 3,
+      "status": 3,
       "imgUrl": "",
-      "id": 15
+      "id": 15,
+      "isCompleted": false
     },
     {
       "id": 16,
@@ -106,7 +129,8 @@
       "description": "Pete",
       "dueDate": "2021-07-06T21:00:00.000Z",
       "priority": 2,
-      "isCompleted": 1
+      "status": 1,
+      "isCompleted": false
     }
   ],
   "tasks": [],

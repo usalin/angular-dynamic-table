@@ -41,7 +41,7 @@
 
   <mat-label><strong>Completion</strong></mat-label>
   <br>
-    <mat-radio-group formControlName="isCompleted" #radioGroup="matRadioGroup"
+    <mat-radio-group formControlName="status" #radioGroup="matRadioGroup"
   aria-label="Select completion status">
   <mat-radio-button *ngFor="let status of statuses" [value]="status.id">
     {{status.value}}</mat-radio-button>

@@ -35,20 +35,13 @@
            <mat-checkbox disabled [ngClass]="getCheckboxColor(element[col])" [checked]="element[col]"></mat-checkbox>
           </div>
           <div class="subjects" *ngIf="col === 'subjects'; spanHeader">
-            <a mat-button (click)="element[col].isExpanded = !element[col].isExpanded">View
+            <a mat-button (click)="element.isExpanded = !element.isExpanded">View
               Subjects
             </a>
            </div>
 
-           <div class="expandedDetail" *ngIf="col === 'expandedDetail'; spanHeader">
-            <a>
-              Fake expanded detail spaceholder..
-            </a>
-           </div>
-
-<!-- 
-          <ng-container matColumnDef="expandedDetail">
-            <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+  
+          <div class="expandedDetail" *ngIf="col === 'expandedDetail'; spanHeader">
       
               <div class="row student-element-detail" [@detailExpand]="element.isExpanded ? 'expanded' : 'collapsed'">
                 <mat-list>
@@ -60,11 +53,9 @@
                 </mat-list>
               </div>
       
-            </td>
-          </ng-container>
-               -->
+            </div>
 
-          <span #spanHeader *ngIf="col !== 'dueDate' && col !== 'isCompleted'">
+          <span #spanHeader *ngIf="col !== 'dueDate' && col !== 'isCompleted' && col !== 'subjects'">
             {{element[col]}}
           </span>
         </div>

@@ -26,3 +26,14 @@ h2 {
 }
 
 .priorityOne {background-color: #69F0AE;}
+
+.student-element-detail {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(66, 66,66);
+    box-shadow: inset 2px 3px 8px #c1c1c1;
+    border-radius: 8px;
+  }
+  

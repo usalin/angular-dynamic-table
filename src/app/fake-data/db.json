@@ -9,7 +9,7 @@
       "priority": 2,
       "status": 3,
       "isCompleted": false,
-      "isExpanded": true,
+      "isExpanded": false,
       "subjects":[
         {
            "name":"Bio",

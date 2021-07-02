@@ -7,6 +7,8 @@ export interface List {
    priority: Priority;
    isCompleted: boolean;
    status: CompletionStatus;
+   subjects: string[];
+   isExpanded: boolean;
 }
 
 export interface LimitedList {

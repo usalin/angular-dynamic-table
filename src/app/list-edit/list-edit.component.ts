@@ -77,6 +77,8 @@ export class ListEditComponent implements OnInit {
           priority: this.listForm.get('priority').value,
           status : this.listForm.get('status').value,
           isCompleted: false,
+          isExpanded: true,
+          subjects:["Science","Math"]
 
         }
         this.listService.updateItem(updatedList).subscribe(data => {
@@ -94,6 +96,8 @@ export class ListEditComponent implements OnInit {
           status : this.listForm.get('status').value,
           imgUrl: '',
           isCompleted: false,
+          isExpanded: true,
+          subjects:["Science","Math"]
         }
         
         this.listService.createItem(newList).subscribe(data => {

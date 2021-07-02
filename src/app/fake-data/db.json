@@ -9,6 +9,7 @@
       "priority": 2,
       "status": 3,
       "isCompleted": false,
+      "isExpanded": true,
       "subjects":[
         {
            "name":"Bio",
@@ -30,7 +31,9 @@
       "dueDate": "2021-07-20T21:00:00.000Z",
       "priority": 1,
       "status": 2,
-      "isCompleted": true
+      "isCompleted": true,
+      "isExpanded": true
+
     },
     {
       "name": "salem",
@@ -40,7 +43,9 @@
       "status": 3,
       "imgUrl": "",
       "id": 6,
-      "isCompleted": true
+      "isCompleted": true,
+      "isExpanded": true
+
     },
     {
       "name": "sadsa",
@@ -50,7 +55,8 @@
       "status": 3,
       "imgUrl": "",
       "id": 8,
-      "isCompleted": true
+      "isCompleted": true,
+      "isExpanded": true
     },
     {
       "name": "aaaaaaa",

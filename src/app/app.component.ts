@@ -1,3 +1,4 @@
+import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -17,21 +18,31 @@ const USER_SCHEMA = {
   "priority": "number",
   "isCompleted": "boolean",
   "status": "status",
+  "expandedDetail":"boolean",
+  "subjects":"subject",
   "edit": "edit",
   "delete": "delete",
-  "create": "create"
+  "create": "create",
 }
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ])],
 })
 export class AppComponent implements OnInit {
-  displayedColumns: string[] = ["name", "description", "imgUrl", "dueDate", "priority", "isCompleted", "status", "edit", "delete", "create"];
+  displayedColumns: string[] = ["name", "description", "imgUrl", "dueDate", "priority", "isCompleted", "status","subjects","expandedDetail", "edit", "delete", "create"];
   dataSchema = USER_SCHEMA;
   list: List;
   public dataSource = new MatTableDataSource([]);
+  isTableExpanded = false;
+
 
   @ViewChild(MatPaginator, { static: false }) matPaginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) matSort: MatSort;
@@ -95,4 +106,11 @@ export class AppComponent implements OnInit {
   getCheckboxColor(isComplete){    
     if(isComplete) return 'priorityOne';
    }
+   toggleTableRows() {
+    this.isTableExpanded = !this.isTableExpanded;
+
+    this.dataSource.data.forEach((row: any) => {
+      row.isExpanded = this.isTableExpanded;
+    })
+  }
 }

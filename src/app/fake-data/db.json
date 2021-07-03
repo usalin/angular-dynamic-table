@@ -10,16 +10,16 @@
       "status": 3,
       "isCompleted": false,
       "isExpanded": false,
-      "subjects":[
+      "subjects": [
         {
-           "name":"Bio",
-           "type":"Medical",
-           "grade":"A"
+          "name": "Bio",
+          "type": "Medical",
+          "grade": "A"
         },
         {
-          "name":"Chemics",
-          "type":"Medical",
-          "grade":"D"
+          "name": "Chemics",
+          "type": "Medical",
+          "grade": "D"
         }
       ]
     },
@@ -33,7 +33,6 @@
       "status": 2,
       "isCompleted": true,
       "isExpanded": true
-
     },
     {
       "name": "salem",
@@ -45,7 +44,6 @@
       "id": 6,
       "isCompleted": true,
       "isExpanded": true
-
     },
     {
       "name": "sadsa",

@@ -6,10 +6,28 @@
 </mat-form-field>
 </div>
 
+<mat-list>
+  <mat-list-item>Choose a column</mat-list-item>
+  <mat-list-item>
+    <mat-select placeholder="Group by" 
+      [(ngModel)]="groupingColumn" name="item"
+      (ngModelChange)="setDataSource()">
+      <mat-option [value]="null"></mat-option>
+      <mat-option *ngFor="let item of displayedColumns" [value]="item">
+        {{item}}
+      </mat-option>
+    </mat-select>
+  </mat-list-item>
+</mat-list>
+
+
+
+
+
 
 <article>
   <h2>Editable Dynamic Table</h2>
-    <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows>
+    <table mat-table [dataSource]="dataSource" matSort>
     <ng-container [matColumnDef]="col" *ngFor="let col of displayedColumns">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>
         <span *ngIf="col !== 'edit' && col !== 'delete' && col !== 'create'">
@@ -39,23 +57,7 @@
               Subjects
             </a>
            </div>
-
-  
-          <div class="expandedDetail" *ngIf="col === 'expandedDetail'; spanHeader">
-      
-              <div class="row student-element-detail" [@detailExpand]="element.isExpanded ? 'expanded' : 'collapsed'">
-                <mat-list>
-                  <div mat-subheader>Subjects of {{element.name}}</div>
-                  <mat-list-item *ngFor="let subject of element.subjects">
-                    <div mat-line>{{subject.name}}</div>
-                    <div mat-line> {{subject.type}} | Grade: {{subject.grade}}</div>
-                  </mat-list-item>
-                </mat-list>
-              </div>
-      
-            </div>
-
-          <span #spanHeader *ngIf="col !== 'dueDate' && col !== 'isCompleted' && col !== 'subjects'">
+          <span #spanHeader *ngIf="col !== 'dueDate' && col !== 'isCompleted' && col !== 'subjects' && col !== 'groupHeader'">
             {{element[col]}}
           </span>
         </div>
@@ -63,13 +65,32 @@
     </ng-container>
 
 
-    <!-- class="student-element-row" [class.student-expanded-row]="element.isExpanded" -->
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
-     <!-- <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="student-detail-row"></tr> -->
+  <!-- Group header cells-->
+  <ng-container matColumnDef="groupHeader">
+    <td colspan="999" mat-cell *matCellDef="let group">
+      <strong>{{group.groupName}}</strong>
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="groupReducer">
+    <td colspan="1" mat-cell *matCellDef="let group">
+      <div fxFill fxLayoutAlign="center center">
+        <mat-icon *ngIf="!group.reduced">expand_less</mat-icon>
+        <mat-icon *ngIf="group.reduced">expand_more</mat-icon>
+      </div>
+    </td>
+  </ng-container>
+
+  <!-- Group line -->
+  <tr mat-row  class="clickable"
+      *matRowDef="let row; columns: ['groupReducer','groupHeader']; when: isGroup" 
+      (click)="reduceGroup(row)"> 
+  </tr>
+
   </table>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
 
 </article>
